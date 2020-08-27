@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Deklarierung
     private EditText input_anfangskapital;
     private EditText input_zinssatz;
     private EditText input_laufzeit;
@@ -20,19 +21,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //View aufrufen
         setContentView(R.layout.activity_main);
 
+        //Initialisierung
         final Model model = Model.getInstance();
         input_anfangskapital = (EditText) findViewById(R.id.activity_anfangskapital_input);
         input_zinssatz = (EditText) findViewById(R.id.activity_zinssatz_input);
         input_laufzeit = (EditText) findViewById(R.id.activity_laufzeit_input);
         button_calculate = (Button) findViewById(R.id.activity_calculate_btn);
 
+        //Listener für Berechnung
         button_calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent outputActivity = new Intent(MainActivity.this, OutputActivity.class);
-
                 try {
                     model.setInitialCapital(Double.parseDouble(input_anfangskapital.getText().toString()));
                     model.setInterestRate(Double.parseDouble(input_zinssatz.getText().toString()));
@@ -41,7 +44,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "ungültige oder fehlende Angaben", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                //Intent erzeugen
+                Intent outputActivity = new Intent(MainActivity.this, OutputActivity.class);
+                //Aktivität wechseln
                 startActivity(outputActivity);
+
 
             }
         });

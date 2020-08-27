@@ -1,11 +1,12 @@
 package com.philipundbasti.zinsrechner;
 
 public class Model {
-    private static Model instance;
+    //1:1 Übernahme aus Übungsaufgabe
 
-    private double initialCapital;
-    private double interestRate;
-    private int runningTime;
+    /*
+     * Singleton-Bereich
+     */
+    private static Model instance;
 
     private Model() {
     }
@@ -16,6 +17,13 @@ public class Model {
         }
         return instance;
     }
+
+    /*
+     * Model-Bereich
+     */
+    private double initialCapital;
+    private double interestRate;
+    private int runningTime;
 
     public void setInitialCapital(double initialCapital) {
         this.initialCapital = initialCapital;
